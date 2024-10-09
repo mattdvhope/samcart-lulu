@@ -3,14 +3,14 @@ import axios from 'axios';
 import getAccessToken from './getAccessToken'; // Import the new function
 
 const listPrintJobs = async () => {
-  try {
-    const access_token = await getAccessToken();
+  const access_token = await getAccessToken();
 
-    // Use the access token for the API request
-    const myHeaders = {
-      'Authorization': `Bearer ${access_token}`,
-      'Cache-Control': 'no-cache'
-    };
+  const myHeaders = {
+    'Authorization': `Bearer ${access_token}`,
+    // 'Cache-Control': 'no-cache'
+  };
+
+  try {
 
     let response;
 
