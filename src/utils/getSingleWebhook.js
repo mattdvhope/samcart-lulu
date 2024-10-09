@@ -1,18 +1,14 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken';
+import { getApiConfig } from './apiConfig';
 import showLuluErrors from './showLuluErrors';
 
 const getSingleWebhook = async (id) => {
-  const access_token = await getAccessToken();
 
-  const myHeaders = {
-    "Authorization": `Bearer ${access_token}`,
-    "Cache-Control": "no-cache",
-  };
+  const { apiBaseURL, myHeaders } = await getApiConfig();
 
   try {
     const response = await axios.get(
-      `/api/webhooks/${id}`,
+      `${apiBaseURL}webhooks/${id}`,
       { headers: myHeaders }
     );
 
@@ -22,8 +18,6 @@ const getSingleWebhook = async (id) => {
     console.error(showLuluErrors(errorData));
   }
 
-
 };
-
 
 export default getSingleWebhook;
