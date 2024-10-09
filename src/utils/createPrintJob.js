@@ -1,15 +1,10 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken';
+import { getApiConfig } from './apiConfig';
 import showLuluErrors from './showLuluErrors';
 
 const createPrintJob = async () => {
-  const access_token = await getAccessToken();
-
-  const myHeaders = {
-    "Authorization": `Bearer ${access_token}`,
-    "Cache-Control": "no-cache",
-    "Content-Type": "application/json"
-  };
+  
+  const { apiBaseURL, myHeaders } = await getApiConfig();
 
   const requestBody = {
     "contact_email": "test@test.com",
@@ -53,7 +48,7 @@ const createPrintJob = async () => {
 
   try {
     const response = await axios.post(
-      "/api/print-jobs/",
+      `${apiBaseURL}print-jobs/`,
       requestBody,
       { headers: myHeaders }
     );
