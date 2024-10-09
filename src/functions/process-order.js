@@ -16,6 +16,11 @@ exports.handler = async (event) => {
 
     return {
         statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': 'https://soaw.samcart.com',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        },
         body: JSON.stringify({ message: "Order summary received successfully!" }),
     };
 };
