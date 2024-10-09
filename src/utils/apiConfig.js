@@ -18,3 +18,4 @@ export const getApiConfig = async () => {
     myHeaders, // Include myHeaders in the return object
   };
 };
+
