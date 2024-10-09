@@ -1,5 +1,13 @@
 // src/functions/process-order.js
 exports.handler = async (event) => {
+    
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: 'Method Not Allowed'
+        };
+    }
+
     const data = JSON.parse(event.body);
     console.log('Received order summary:', data);
 
