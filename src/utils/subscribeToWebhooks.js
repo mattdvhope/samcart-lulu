@@ -15,7 +15,7 @@ const subscribeToWebhooks = async () => {
     "topics": [
       "PRINT_JOB_STATUS_CHANGED"
     ],
-    "url": "https://7154-2600-8807-8802-6000-1411-2c80-5b36-ec22.ngrok-free.app/"
+    "url": process.env.URL_THANKYOU
   };
 
   try {

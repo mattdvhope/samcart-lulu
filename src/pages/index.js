@@ -28,7 +28,7 @@ const IndexPage = () => {
     <Layout>
       <div className={styles.textCenter}>
         <h1>Sandbox to test Samcart interaction with Lulu API</h1>
-        {/*<LuluButton onClick={listPrintJobs} buttonName={"List Print Jobs"} />
+        <LuluButton onClick={listPrintJobs} buttonName={"List Print Jobs"} />
         <br/>
         <LuluButton onClick={calculatePrintCost} buttonName={"Calculate Print Cost"} />
         <br/>
@@ -41,7 +41,7 @@ const IndexPage = () => {
         <LuluButton onClick={printJobCosts} buttonName={`Get Print Job Costs, ID# 120251`} />
         <br/>
         <LuluButton onClick={retrieveShippingOptions} buttonName={`Retrieve Shipping Options`} />
-        <br/>*/}
+        <br/>
         <LuluButton onClick={subscribeToWebhooks} buttonName={`Subscribe To Webhooks`} />
         <br/>
         <LuluButton onClick={getListOfWebhooks} buttonName={`Get List Of Webhooks`} />

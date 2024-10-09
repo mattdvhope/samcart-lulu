@@ -12,7 +12,7 @@ const updateWebhook = async (id) => {
   };
 
   const requestBody = {
-    "url": "https://55b6-2600-8807-8802-6000-7dc4-f9cf-ad77-6c1f.ngrok-free.app"
+    "url": process.env.URL_THANKYOU
   };
 
   try {
