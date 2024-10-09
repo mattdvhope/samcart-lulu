@@ -11,6 +11,7 @@ export const getApiConfig = async () => {
 
   const myHeaders = {
     "Authorization": `Bearer ${access_token}`,
+    'Content-Type': 'application/json'
   };
 
   return {
