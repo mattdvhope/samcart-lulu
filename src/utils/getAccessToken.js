@@ -1,20 +1,22 @@
 // src/utils/getAccessToken.js
 
-import axios from 'axios';
+import axios from 'axios'; // Import axios
+import { requestAccessToken } from './requestAccessToken'; // Import the shared function
 
 const getAccessToken = async () => {
   try {
-    // Step 1: Get the access token through the proxy
-    const tokenResponse = await axios.post(`/api/${process.env.GATSBY_LULU_AUTH}`, new URLSearchParams({
-      'grant_type': process.env.GATSBY_GRANT_TYPE
-    }), {
-      headers: {
-        'Content-Type': process.env.GATSBY_CONTENT_TYPE,
-        'Authorization': `Basic ${process.env.GATSBY_ENCODED}`
-      }
-    });
+    let access_token;
 
-    const { access_token } = tokenResponse.data;
+    // Check if running in production
+    if (process.env.NODE_ENV === 'production') {
+      // Call the Netlify function in production
+      const response = await axios.post('/.netlify/functions/getAccessToken');
+      access_token = response.data.access_token;
+    } else {
+      // Use the shared function directly in development
+      access_token = await requestAccessToken();
+    }
+
     return access_token; // Return the access token for use
   } catch (error) {
     console.error('Error getting access token:', error);
