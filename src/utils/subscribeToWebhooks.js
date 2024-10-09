@@ -15,7 +15,7 @@ const subscribeToWebhooks = async () => {
     "topics": [
       "PRINT_JOB_STATUS_CHANGED"
     ],
-    "url": process.env.URL_THANKYOU
+    "url": process.env.GATSBY_URL_THANKYOU
   };
 
   try {

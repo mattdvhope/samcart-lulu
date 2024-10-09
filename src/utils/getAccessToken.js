@@ -5,12 +5,12 @@ import axios from 'axios';
 const getAccessToken = async () => {
   try {
     // Step 1: Get the access token through the proxy
-    const tokenResponse = await axios.post(`/api/${process.env.LULU_AUTH}`, new URLSearchParams({
-      'grant_type': process.env.GRANT_TYPE
+    const tokenResponse = await axios.post(`/api/${process.env.GATSBY_LULU_AUTH}`, new URLSearchParams({
+      'grant_type': process.env.GATSBY_GRANT_TYPE
     }), {
       headers: {
-        'Content-Type': process.env.CONTENT_TYPE,
-        'Authorization': `Basic ${process.env.ENCODED}`
+        'Content-Type': process.env.GATSBY_CONTENT_TYPE,
+        'Authorization': `Basic ${process.env.GATSBY_ENCODED}`
       }
     });
 

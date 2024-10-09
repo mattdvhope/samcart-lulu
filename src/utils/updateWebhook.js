@@ -12,7 +12,7 @@ const updateWebhook = async (id) => {
   };
 
   const requestBody = {
-    "url": process.env.URL_THANKYOU
+    "url": process.env.GATSBY_URL_THANKYOU
   };
 
   try {
