@@ -1,18 +1,14 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken';
+import { getApiConfig } from './apiConfig';
 import showLuluErrors from './showLuluErrors';
 
 const getListOfWebhooks = async () => {
-  const access_token = await getAccessToken();
 
-  const myHeaders = {
-    "Authorization": `Bearer ${access_token}`,
-    "Cache-Control": "no-cache",
-  };
+  const { apiBaseURL, myHeaders } = await getApiConfig();
 
   try {
     const response = await axios.get(
-      `/api/webhooks/`,
+      `${apiBaseURL}webhooks/`,
       { headers: myHeaders }
     );
 
