@@ -7,7 +7,7 @@ const getPrintJobById = async (id) => {
 
   const myHeaders = {
     "Authorization": `Bearer ${access_token}`,
-    "Cache-Control": "no-cache",
+    // "Cache-Control": "no-cache",
   };
 
   try {
