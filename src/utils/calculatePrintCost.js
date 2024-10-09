@@ -1,14 +1,10 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken'; // Import the new function
+import { getApiConfig } from './apiConfig';
+import showLuluErrors from './showLuluErrors';
 
 const calculatePrintCost = async () => {
-  const access_token = await getAccessToken();
-
-  const myHeaders = {
-    'Authorization': `Bearer ${access_token}`,
-    'Cache-Control': 'no-cache',
-    'Content-Type': 'application/json'
-  };
+  
+  const { apiBaseURL, myHeaders } = await getApiConfig();
 
   const requestBody = {
     "line_items": [
@@ -36,15 +32,15 @@ const calculatePrintCost = async () => {
   
   try {
     const response = await axios.post(
-      "/api/print-job-cost-calculations/",
+      `${apiBaseURL}print-job-cost-calculations/`,
       requestBody,
       { headers: myHeaders }
     );
 
     console.log(response.data);
     
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (errorData) {
+    console.error(showLuluErrors(errorData));
   }
 };
 
