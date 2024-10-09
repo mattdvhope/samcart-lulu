@@ -1,25 +1,22 @@
 import axios from 'axios';
-import getAccessToken from './getAccessToken';
+import { getApiConfig } from './apiConfig';
+import showLuluErrors from './showLuluErrors';
 
 const getPrintJobStats = async () => {
-  const access_token = await getAccessToken();
 
-  const myHeaders = {
-    "Authorization": `Bearer ${access_token}`,
-    "Cache-Control": "no-cache",
-  };
+  const { apiBaseURL, myHeaders } = await getApiConfig();
 
   try {
 
     const response = await axios.get(
-      "/api/print-jobs/statistics/",
+      `${apiBaseURL}print-jobs/statistics/`,
       { headers: myHeaders }
     );
     
     console.log(response.data);
 
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (errorData) {
+    console.error(showLuluErrors(errorData));
   }
 };
 
