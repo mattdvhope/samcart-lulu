@@ -4,8 +4,12 @@ import axios from 'axios'; // Directly import axios
 
 // Function to construct the request and return the access token
 export const requestAccessToken = async () => {
-  const apiBaseURL = process.env.NODE_ENV === 'development' ? '/api/' : process.env.GATSBY_SANDBOX_PRINT_JOBS;
-  const url = `${apiBaseURL}${process.env.GATSBY_LULU_AUTH}`; // Use relative URL for dev
+  const apiBaseURL =
+    process.env.NODE_ENV === 'development'
+      ? '/api/' // Use proxy for development
+      : 'https://api.sandbox.lulu.com/'; // Direct URL for production
+
+  const url = `${apiBaseURL}${process.env.GATSBY_LULU_AUTH}`; // Use the correct path
 
   const data = new URLSearchParams({
     'grant_type': process.env.GATSBY_GRANT_TYPE,

@@ -1,27 +1,29 @@
-// src/utils/getAccessToken.js
-
-import axios from 'axios'; // Import axios
-import { requestAccessToken } from './requestAccessToken'; // Import the shared function
+import axios from 'axios'; // Directly import axios
 
 const getAccessToken = async () => {
+  const apiBaseURL =
+    process.env.NODE_ENV === 'development'
+      ? '/api/' // Use proxy for development
+      : 'https://api.sandbox.lulu.com/'; // Direct URL for production
+
+  const url = `${apiBaseURL}${process.env.GATSBY_LULU_AUTH}`; // Use the correct path
+
+  const data = new URLSearchParams({
+    'grant_type': process.env.GATSBY_GRANT_TYPE,
+  });
+
+  const headers = {
+    'Content-Type': process.env.GATSBY_CONTENT_TYPE,
+    'Authorization': `Basic ${process.env.GATSBY_ENCODED}`,
+  };
+
   try {
-    let access_token;
-
-    // Check if running in production
-    if (process.env.NODE_ENV === 'production') {
-      // Call the Netlify function in production
-      const response = await axios.post('/.netlify/functions/getAccessToken');
-      access_token = response.data.access_token;
-    } else {
-      // Use the shared function directly in development
-      access_token = await requestAccessToken();
-    }
-
-    return access_token; // Return the access token for use
+    const response = await axios.post(url, data, { headers });
+    return response.data.access_token;
   } catch (error) {
-    console.error('Error getting access token:', error);
-    throw error; // Rethrow the error for handling in the caller
+    console.error('Error fetching access token:', error);
+    throw new Error('Failed to retrieve access token');
   }
-};
+}; // Missing closing brace added here
 
 export default getAccessToken;
