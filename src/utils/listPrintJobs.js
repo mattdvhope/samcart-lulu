@@ -5,29 +5,21 @@ import getAccessToken from './getAccessToken'; // Import the new function
 const listPrintJobs = async () => {
   const access_token = await getAccessToken();
 
-  const myHeaders = {
-    'Authorization': `Bearer ${access_token}`,
-    // 'Cache-Control': 'no-cache'
-  };
+  const apiBaseURL =
+    process.env.NODE_ENV === 'development'
+      ? '/api/' // Use proxy for development
+      : 'https://api.sandbox.lulu.com/'; // Direct URL for production
 
   try {
 
-    let response;
-
-    // Determine the correct API endpoint based on the environment
-    if (process.env.NODE_ENV === 'production') {
-      // Production API endpoint
-      response = await axios.get(
-        "https://api.sandbox.lulu.com/print-jobs/", // Replace with your actual production URL
-        { headers: myHeaders }
-      );
-    } else {
-      // Development API endpoint using the proxy
-      response = await axios.get(
-        "/api/print-jobs/", // This will hit the proxy during development
-        { headers: myHeaders }
-      );
-    }
+    const response = await axios.get(
+      `${apiBaseURL}/print-jobs/`, // This will hit the proxy during development
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`
+        }
+      }
+    );
 
     console.log(response.data);
     
