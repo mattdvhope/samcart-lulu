@@ -1,11 +1,13 @@
 // utils/listPrintJobs.js
 import axios from 'axios';
-import { getApiConfig } from './apiConfig'; // Import the new configuration function
+import { getApiConfig } from './apiConfig';
+import showLuluErrors from './showLuluErrors';
 
 const listPrintJobs = async () => {
+  
+  const { apiBaseURL, myHeaders } = await getApiConfig();
+  
   try {
-    // Destructure apiBaseURL, and myHeaders from getApiConfig
-    const { apiBaseURL, myHeaders } = await getApiConfig();
 
     const response = await axios.get(
       `${apiBaseURL}print-jobs/`, // This will hit the proxy during development
@@ -14,9 +16,10 @@ const listPrintJobs = async () => {
 
     console.log(response.data);
     
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (errorData) {
+    console.error(showLuluErrors(errorData));
   }
-};
+
+}; // listPrintJobs
 
 export default listPrintJobs;
