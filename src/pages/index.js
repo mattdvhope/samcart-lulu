@@ -1,33 +1,61 @@
-import * as React from "react"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
-import interactWithLulu from "../components/interactWithLulu" // Import the function
+import * as React from "react";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import * as styles from "../components/index.module.css";
+import LuluButton from "../components/LuluButton";
+import listPrintJobs from "../utils/listPrintJobs";
+import calculatePrintCost from "../utils/calculatePrintCost";
+import createPrintJob from "../utils/createPrintJob";
+import getPrintJobStats from "../utils/getPrintJobStats";
+import getPrintJobById from "../utils/getPrintJobById";
+import getPrintJobCosts from "../utils/getPrintJobCosts";
+import retrieveShippingOptions from "../utils/retrieveShippingOptions";
+import subscribeToWebhooks from "../utils/subscribeToWebhooks";
+import getListOfWebhooks from "../utils/getListOfWebhooks";
+import getSingleWebhook from "../utils/getSingleWebhook";
+import updateWebhook from "../utils/updateWebhook";
+import deleteWebhook from "../utils/deleteWebhook";
 
-const IndexPage = () => (
-  <Layout>
-    <div className={styles.textCenter}>
-      <h1>Sandbox to test Samcart interaction with Lulu API</h1>
-      <button 
-        className={styles.largeButton} 
-        onClick={() => interactWithLulu()} // Invoke the imported function
-        style={{
-          padding: "20px 40px",
-          fontSize: "18px",
-          backgroundColor: "#007acc",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginTop: "20px",
-        }}
-      >
-        Request Lulu API JWT
-      </button>
-    </div>
-  </Layout>
-)
+const IndexPage = () => {
 
-export const Head = () => <Seo title="Home" />
+  const printJob = () => getPrintJobById(120251);
+  const printJobCosts = () => getPrintJobCosts(120251);
+  const getWebhook = () => getSingleWebhook("4f158c8c-df06-496f-a056-3ab1855ae520");
+  const changeWebhook = () => updateWebhook("4f158c8c-df06-496f-a056-3ab1855ae520");
+  const destroyWebhook = () => deleteWebhook("b30e95a6-9d66-4a6c-8a84-a5884024b7a1");
 
-export default IndexPage
+  return (
+    <Layout>
+      <div className={styles.textCenter}>
+        <h1>Sandbox to test Samcart interaction with Lulu API</h1>
+        {/*<LuluButton onClick={listPrintJobs} buttonName={"List Print Jobs"} />
+        <br/>
+        <LuluButton onClick={calculatePrintCost} buttonName={"Calculate Print Cost"} />
+        <br/>
+        <LuluButton onClick={createPrintJob} buttonName={"Create Print Job"} />
+        <br/>
+        <LuluButton onClick={getPrintJobStats} buttonName={"Get Print Job Stats"} />
+        <br/>
+        <LuluButton onClick={printJob} buttonName={`Get Print Job, ID# 120251`} />
+        <br/>
+        <LuluButton onClick={printJobCosts} buttonName={`Get Print Job Costs, ID# 120251`} />
+        <br/>
+        <LuluButton onClick={retrieveShippingOptions} buttonName={`Retrieve Shipping Options`} />
+        <br/>*/}
+        <LuluButton onClick={subscribeToWebhooks} buttonName={`Subscribe To Webhooks`} />
+        <br/>
+        <LuluButton onClick={getListOfWebhooks} buttonName={`Get List Of Webhooks`} />
+        <br/>
+        <LuluButton onClick={getWebhook} buttonName={`Get Single Webhook`} />
+        <br/>
+        <LuluButton onClick={changeWebhook} buttonName={`Change Webhook`} />
+        <br/>
+        <LuluButton onClick={destroyWebhook} buttonName={`Delete Webhook`} />
+      </div>
+    </Layout>
+  );
+};
+
+export const Head = () => <Seo title="Home" />;
+
+export default IndexPage;
