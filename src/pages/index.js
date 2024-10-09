@@ -22,7 +22,7 @@ const IndexPage = () => {
   const printJobCosts = () => getPrintJobCosts(120251);
   const getWebhook = () => getSingleWebhook("4f158c8c-df06-496f-a056-3ab1855ae520");
   const changeWebhook = () => updateWebhook("4f158c8c-df06-496f-a056-3ab1855ae520");
-  const destroyWebhook = () => deleteWebhook("b30e95a6-9d66-4a6c-8a84-a5884024b7a1");
+  const destroyWebhook = () => deleteWebhook("47c25310-52d6-48ad-a4ec-b45526a7f155");
 
   return (
     <Layout>
