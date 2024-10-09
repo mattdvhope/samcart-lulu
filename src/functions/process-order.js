@@ -1,26 +1,41 @@
-// src/functions/process-order.js
-exports.handler = async (event) => {
-    
-    if (event.httpMethod !== 'POST') {
+exports.handler = async (event, context) => {
+    // Handle preflight request
+    if (event.httpMethod === 'OPTIONS') {
         return {
-            statusCode: 405,
-            body: 'Method Not Allowed'
+            statusCode: 204,
+            headers: {
+                'Access-Control-Allow-Origin': '*', // Change this to your specific origin for production
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            },
         };
     }
 
-    const data = JSON.parse(event.body);
-    console.log('Received order summary:', data);
+    // Parse the request body
+    let orderId;
+    let totalAmount;
 
-    // Your logic to process the order summary
-    // e.g., saving to a database or triggering other actions
+    try {
+        const body = JSON.parse(event.body);
+        orderId = body.orderId;
+        totalAmount = body.totalAmount;
+    } catch (error) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ message: 'Invalid request body' }),
+        };
+    }
 
+    // Handle your order processing logic here...
+
+    // Return response with CORS headers
     return {
         statusCode: 200,
         headers: {
-            'Access-Control-Allow-Origin': 'https://soaw.samcart.com',
+            'Access-Control-Allow-Origin': '*', // Change this to your specific origin for production
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
         },
-        body: JSON.stringify({ message: "Order summary received successfully!" }),
+        body: JSON.stringify({ message: 'Order processed successfully', orderId, totalAmount }),
     };
 };
