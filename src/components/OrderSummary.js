@@ -16,7 +16,7 @@ const OrderSummary = () => {
 
         // Cleanup interval on component unmount
         return () => clearInterval(intervalId);
-    }, []);
+    }, [orderData]);
 
     return (
         <div>
