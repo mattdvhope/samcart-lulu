@@ -1,28 +1,11 @@
 [build]
-  publish = "public"  # Replace with your output directory for static files
-  functions = "functions"  # Specify the directory where your functions are located
+  functions = "functions" # Set the folder where your functions are located
+  publish = "public" # Set the folder where your static files are located
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
-
-[headers]
-  /* This section allows CORS configuration */
-  / = [
-    { key = "Access-Control-Allow-Origin", value = "*" },  # Allow CORS for all domains
-    { key = "Access-Control-Allow-Headers", value = "Content-Type" },
-    { key = "Access-Control-Allow-Methods", value = "GET, POST, OPTIONS" }
-  ]
-
-[functions]
-  node_bundler = "webpack"  # Choose your preferred bundler (webpack, esbuild, etc.)
-
-# Optional: Configure build environment variables
-[build.environment]
-  NODE_ENV = "production"  # Example of setting an environment variable
-
-# Optional: Specify how functions should be served
-[functions.http]
-  maxDuration = 10  # Maximum execution duration for functions in seconds
+[[headers]]
+  # This section allows CORS configuration
+  for = "/*" # This applies to all routes
+    [headers.values]
+      Access-Control-Allow-Origin = "*" # Allow CORS for all domains
+      Access-Control-Allow-Headers = "Content-Type"
+      Access-Control-Allow-Methods = "POST, OPTIONS"
