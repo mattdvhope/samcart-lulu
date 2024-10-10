@@ -1,5 +1,5 @@
 // src/utils/createPrintJob.js
-import axios from 'axios';
+// import axios from 'axios';
 import { getApiConfig } from './apiConfig';
 import showLuluErrors from './showLuluErrors';
 
@@ -11,7 +11,7 @@ const timestampForOrder = () => {
 
 const createPrintJob = async (orderSummary) => {
 
-    console.log(orderSummary)
+    console.log(orderSummary);
 
     // if (!orderSummary || !orderSummary.customer || !orderSummary.items) {
     //     console.error('Invalid order summary structure:', orderSummary);
