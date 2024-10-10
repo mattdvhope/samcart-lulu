@@ -10,6 +10,12 @@ const timestampForOrder = () => {
 };
 
 const createPrintJob = async (orderSummary) => {
+
+    if (!orderSummary || !orderSummary.customer || !orderSummary.items) {
+        console.error('Invalid order summary structure:', orderSummary);
+        return; // Exit if orderSummary is invalid
+    }
+
     const { apiBaseURL, myHeaders } = await getApiConfig();
 
     const requestBody = {
