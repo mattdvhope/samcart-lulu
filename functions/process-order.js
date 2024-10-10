@@ -6,15 +6,23 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Origin': 'https://soaw.samcart.com',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Credentials': true
+                'Access-Control-Allow-Credentials': true,
             },
         };
     }
 
     try {
-        const { orderId, totalAmount } = JSON.parse(event.body);
-        
-        console.log(`Processing order: ${orderId}, Total Amount: ${totalAmount}`);
+        const { orderSummary } = JSON.parse(event.body); // Parse the entire orderSummary object
+
+        console.log(`Processing order: ${JSON.stringify(orderSummary)}`);
+        console.log(`--------------------`);
+        console.log(orderSummary);
+        console.log(`--------------------`);
+
+        // You can access specific properties like this:
+        const { id: orderId, total_amount: totalAmount } = orderSummary;
+
+        console.log(`Order ID: ${orderId}, Total Amount: ${totalAmount}`);
 
         return {
             statusCode: 200,
@@ -22,9 +30,9 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Origin': 'https://soaw.samcart.com',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Credentials': true
+                'Access-Control-Allow-Credentials': true,
             },
-            body: JSON.stringify({ message: 'Order processed successfully', orderId, totalAmount }),
+            body: JSON.stringify({ message: 'Order processed successfully', orderSummary }),
         };
     } catch (error) {
         return {
