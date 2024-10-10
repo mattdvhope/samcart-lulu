@@ -1,5 +1,5 @@
 // netlify/functions/process-order.js
-import createPrintJob from '../../src/utils/createPrintJob';
+import createPrintJob from '../src/utils/createPrintJob';
 
 // Define common headers for CORS
 const commonHeaders = {
@@ -18,7 +18,7 @@ const buildResponse = (statusCode, body) => ({
 
 exports.handler = async (event) => {
     if (event.httpMethod === 'OPTIONS') {
-        return buildResponse(204, null); // No body needed for OPTIONS
+        return buildResponse(204, {}); // No body needed for OPTIONS
     }
 
     try {
