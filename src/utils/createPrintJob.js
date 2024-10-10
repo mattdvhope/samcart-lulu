@@ -70,10 +70,3 @@ const createPrintJob = async (orderSummary) => {
 };
 
 export default createPrintJob;
-
-
-
-
-
-
-
