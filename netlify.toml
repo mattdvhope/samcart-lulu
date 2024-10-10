@@ -6,6 +6,6 @@
   # This section allows CORS configuration
   for = "/*" # This applies to all routes
     [headers.values]
-      Access-Control-Allow-Origin = "*" # Allow CORS for all domains
+      Access-Control-Allow-Origin = "https://soaw.samcart.com"
       Access-Control-Allow-Headers = "Content-Type"
       Access-Control-Allow-Methods = "POST, OPTIONS"
