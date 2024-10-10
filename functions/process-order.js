@@ -1,5 +1,4 @@
 // netlify/functions/process-order.js
-// import axios from 'axios';
 import createPrintJob from '../src/utils/createPrintJob';
 
 // Define common headers for CORS
