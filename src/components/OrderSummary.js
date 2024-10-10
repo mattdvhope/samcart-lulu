@@ -8,6 +8,7 @@ const OrderSummary = () => {
             const response = await fetch('https://samcart-lulu.netlify.app/.netlify/functions/process-order');
             const data = await response.json();
             setOrderData(data);
+            console.log(orderData);
         };
 
         // Fetch data every 5 seconds
