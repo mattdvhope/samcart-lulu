@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     try {
         const { orderId, totalAmount } = JSON.parse(event.body);
         
-        // Your order processing logic goes here
+        console.log(`Processing order: ${orderId}, Total Amount: ${totalAmount}`);
 
         return {
             statusCode: 200,

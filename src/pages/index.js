@@ -15,7 +15,6 @@ import getListOfWebhooks from "../utils/getListOfWebhooks";
 import getSingleWebhook from "../utils/getSingleWebhook";
 import updateWebhook from "../utils/updateWebhook";
 import deleteWebhook from "../utils/deleteWebhook";
-import OrderSummary from '../components/OrderSummary';
 
 const IndexPage = () => {
 
@@ -31,8 +30,6 @@ const IndexPage = () => {
         <h1>Sandbox to test Samcart interaction with Lulu API</h1>
         <LuluButton onClick={listPrintJobs} buttonName={"List Print Jobs"} />
         <br/>
-        <h1>Welcome to the Order Page</h1>
-        <OrderSummary />
         {/*<LuluButton onClick={calculatePrintCost} buttonName={"Calculate Print Cost"} />
         <br/>
         <LuluButton onClick={createPrintJob} buttonName={"Create Print Job"} />
