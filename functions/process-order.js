@@ -23,6 +23,7 @@ exports.handler = async (event) => {
 
     try {
         // Parse the incoming order summary
+console.log(event.body);
         const orderSummary = JSON.parse(event.body);
         
         console.log('Order Summary:', orderSummary);
