@@ -1,3 +1,6 @@
+This comes from console.log(event.body) in process-order.js
+(...in stringified format)
+
 {
     "orderSummary": {
         "id": 19026152,
