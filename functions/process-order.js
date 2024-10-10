@@ -1,5 +1,5 @@
 // netlify/functions/process-order.js
-import createPrintJob from '../src/utils/createPrintJob';
+// import createPrintJob from '../src/utils/createPrintJob';
 
 // Define common headers for CORS
 const commonHeaders = {
@@ -30,7 +30,7 @@ console.log(event.body);
         console.log('Order Summary ID:', orderSummary.id);
 
         // Immediately invoke createPrintJob with the order summary
-        await createPrintJob(orderSummary);
+        // await createPrintJob(orderSummary);
 
         return buildResponse(200, { message: 'Order processed successfully', orderId: orderSummary.id });
     } catch (error) {
